@@ -68,7 +68,7 @@ extension HFSwipeView {
             return
         }
         DispatchQueue.main.async {
-            self.movePage((self.currentPage + 1) % self.count, animated: true)
+            self.movePage((self.currentPage + self.count + 1), animated: true)
         }
     }
 }
