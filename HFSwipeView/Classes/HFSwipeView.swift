@@ -145,7 +145,7 @@ open class HFSwipeView: UIView {
                 return -1
             }
             if realViewCount > 0 {
-                return realViewCount - 2 * dummyCount
+                return realViewCount - 1 * dummyCount
             } else {
                 return 0
             }
