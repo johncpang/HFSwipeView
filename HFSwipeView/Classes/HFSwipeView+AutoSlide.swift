@@ -14,7 +14,7 @@ extension HFSwipeView {
     /// zero or minus interval disables auto slide.
     public func startAutoSlide(forTimeInterval timeInterval: TimeInterval) {
         if !circulating {
-            logw("Cannot use auto-slide without circulation mode.")
+          //  logw("Cannot use auto-slide without circulation mode.")
             return
         }
         if timeInterval > 0 {
@@ -31,7 +31,7 @@ extension HFSwipeView {
     
     public func pauseAutoSlide() {
         if !circulating {
-            logw("Cannot use auto-slide without circulation mode.")
+          //  logw("Cannot use auto-slide without circulation mode.")
             return
         }
         if autoSlideInterval > 0 {
@@ -44,7 +44,7 @@ extension HFSwipeView {
     
     public func resumeAutoSlide() {
         if !circulating {
-            logw("Cannot use auto-slide without circulation mode.")
+           // logw("Cannot use auto-slide without circulation mode.")
             return
         }
         if autoSlideIntervalBackupForLaterUse > 0 {
@@ -54,7 +54,7 @@ extension HFSwipeView {
     
     public func stopAutoSlide() {
         if !circulating {
-            logw("Cannot use auto-slide without circulation mode.")
+           // logw("Cannot use auto-slide without circulation mode.")
             return
         }
         autoSlideInterval = -1
