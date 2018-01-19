@@ -77,11 +77,11 @@ open class HFSwipeView: UIView {
     internal var contentInsets: UIEdgeInsets {
         if var insets = dataSource?.swipeViewContentInsets?(self) {
             if insets.top != 0 {
-                logw("Changing UIEdgeInsets.top for HFSwipeView is not supported yet, consider a container view instead.")
+               // logw("Changing UIEdgeInsets.top for HFSwipeView is not supported yet, consider a container view instead.")
                 insets.top = 0
             }
             if insets.bottom != 0 {
-                logw("Changing UIEdgeInsets.bottom for HFSwipeView is not supported yet, consider a container view instead.")
+               // logw("Changing UIEdgeInsets.bottom for HFSwipeView is not supported yet, consider a container view instead.")
                 insets.bottom = 0
             }
             return insets
@@ -141,11 +141,11 @@ open class HFSwipeView: UIView {
     open var count: Int { // showing count
         if circulating {
             if realViewCount < 0 {
-                loge("cannot use property \"count\" before set HFSwipeView.realViewCount")
+               // loge("cannot use property \"count\" before set HFSwipeView.realViewCount")
                 return -1
             }
             if realViewCount > 0 {
-                return realViewCount - 2 * dummyCount
+                return realViewCount - 1 * dummyCount
             } else {
                 return 0
             }
@@ -227,7 +227,7 @@ open class HFSwipeView: UIView {
     }
     
     deinit {
-        logi("Successfully released HFSwipeView object.")
+       // logi("Successfully released HFSwipeView object.")
     }
     
     fileprivate func prepareForInteraction() {
@@ -240,19 +240,19 @@ open class HFSwipeView: UIView {
         
         // retrieve item distance
         itemSpace = cgfloat(dataSource?.swipeViewItemDistance?(self), defaultValue: 0)
-        log("successfully set itemSpace: \(itemSpace)")
+       // log("successfully set itemSpace: \(itemSpace)")
         
         // retrieve item size
         itemSize = dataSource?.swipeViewItemSize(self)
         guard let itemSize = itemSize else {
-            loge("item size not provided")
+          // loge("item size not provided")
             return false
         }
         if itemSize == CGSize.zero {
-            loge("item size error: CGSizeZero")
+          //  loge("item size error: CGSizeZero")
             return false
         } else {
-            log("itemSize is \(itemSize)")
+           // log("itemSize is \(itemSize)")
         }
         
         // retrieve item count
@@ -265,17 +265,17 @@ open class HFSwipeView: UIView {
                 // if given width is wider than needed space
                 if itemCount > 0 {
                     itemSpace = (frame.size.width - (itemSize.width * CGFloat(itemCount))) / CGFloat(itemCount)
-                    logw("successfully fixed itemSpace: \(itemSpace)")
+                  //  logw("successfully fixed itemSpace: \(itemSpace)")
                 }
             }
             dummyCount = itemCount
             if dummyCount >= 1 {
                 dummyWidth = CGFloat(dummyCount) * (itemSize.width + itemSpace)
-                log("successfully set dummyCount: \(dummyCount), dummyWidth: \(dummyWidth)")
+               // log("successfully set dummyCount: \(dummyCount), dummyWidth: \(dummyWidth)")
             }
             
             realViewCount = itemCount > 0 ? itemCount + dummyCount * 2 : 0
-            log("successfully set realViewCount: \(realViewCount)")
+          //  log("successfully set realViewCount: \(realViewCount)")
             
         } else {
             collectionView.alwaysBounceHorizontal = true
@@ -290,7 +290,7 @@ open class HFSwipeView: UIView {
         }
         (collectionView.collectionViewLayout as? HFSwipeViewFlowLayout)?.itemSize = itemSize
         setContentSizeWithoutCallingDelegate(contentSize)
-        log("successfully set content size: \(collectionView.contentSize)")
+       // log("successfully set content size: \(collectionView.contentSize)")
         
         return true
     }
@@ -351,7 +351,7 @@ extension HFSwipeView {
     open func movePage(_ page: Int, animated: Bool) {
         
         if page == currentPage {
-            log("movePage received same page(\(page)) == currentPage(\(currentPage))")
+          //  log("movePage received same page(\(page)) == currentPage(\(currentPage))")
             autoAlign(collectionView, indexPath: IndexPath(item: currentRealPage, section: 0))
             return
         }

@@ -17,7 +17,7 @@ extension HFSwipeView: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        log("\(realViewCount)")
+       // log("\(realViewCount)")
         return realViewCount
     }
     
@@ -33,7 +33,7 @@ extension HFSwipeView: UICollectionViewDataSource {
         
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: kSwipeViewCellIdentifier, for: indexPath)
         guard let dataSource = self.dataSource else {
-            loge("dataSource is nil")
+          //  loge("dataSource is nil")
             return cell
         }
         
@@ -66,15 +66,15 @@ extension HFSwipeView: UICollectionViewDataSource {
         }
         
         if displayIndex.row == currentPage {
-            log("[CURRENT][\(displayIndex.row)/\(indexPath.row)]")
+           // log("[CURRENT][\(displayIndex.row)/\(indexPath.row)]")
             if indexPath.row == currentRealPage {
                 dataSource.swipeView?(self, needUpdateCurrentViewForIndexPath: displayIndex, view: cellView!)
             } else {
-                log("[NORMAL][\(displayIndex.row)/\(indexPath.row)]")
+              //  log("[NORMAL][\(displayIndex.row)/\(indexPath.row)]")
                 dataSource.swipeView?(self, needUpdateViewForIndexPath: displayIndex, view: cellView!)
             }
         } else {
-            log("[NORMAL][\(displayIndex.row)/\(indexPath.row)]")
+          //  log("[NORMAL][\(displayIndex.row)/\(indexPath.row)]")
             dataSource.swipeView?(self, needUpdateViewForIndexPath: displayIndex, view: cellView!)
         }
         addDebugInfo(view: cellView!, realIndex: indexPath.row, dispIndex: displayIndex.row)
@@ -84,7 +84,7 @@ extension HFSwipeView: UICollectionViewDataSource {
     internal func cellForItemInNormalMode(_ collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let cell: UICollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: kSwipeViewCellIdentifier, for: indexPath)
         guard let dataSource = self.dataSource else {
-            loge("dataSource is nil")
+          //  loge("dataSource is nil")
             return cell
         }
         var cellView: UIView? = nil
@@ -145,12 +145,12 @@ extension HFSwipeView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         guard var itemSize = self.itemSize else {
-            loge("item size not provided")
+          //  loge("item size not provided")
             return .zero
         }
         
         if frame.size.width < itemSize.width {
-            loge("item size cannot exceeds parent swipe view")
+          //  loge("item size cannot exceeds parent swipe view")
             return .zero
         }
         
@@ -217,11 +217,11 @@ extension HFSwipeView: UIScrollViewDelegate {
     }
     
     public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        log("[\(self.tag)]")
+      //  log("[\(self.tag)]")
     }
     
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        log("[\(self.tag)]: \(scrollView.contentOffset.x), velocity: \(velocity.x), target: \(targetContentOffset.pointee.x)")
+       // log("[\(self.tag)]: \(scrollView.contentOffset.x), velocity: \(velocity.x), target: \(targetContentOffset.pointee.x)")
     }
     
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -236,7 +236,7 @@ extension HFSwipeView: UIScrollViewDelegate {
     }
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        log("[\(self.tag)]")
+       // log("[\(self.tag)]")
         updateIndexBasedOnContentOffset()
         
         if circulating {
